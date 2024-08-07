@@ -1,10 +1,20 @@
 @charset "UTF8";
+@import url('https://fonts.googleapis.com/css2?family=Grey+Qo&family=Indie+Flower&family=Orbitron:wght@400..900&display=swap');
+
+.indie-flower-regular {
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
 
 header {
     
-    background-color: rgb(141, 206, 247); 
-    font-family: Verdana, Geneva, Tahoma, sans-serif; 
-    font-size: 15px;
+    background-color: rgb(162, 216, 250); 
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px;
     text-align:center;
     border-radius: 5px;
     box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.342);
@@ -14,7 +24,9 @@ header {
 
 h1 {
     color: mediumblue;
-    background-color: lightskyblue;
+    background-color: rgb(162, 216, 250);
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
     text-align:center;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -25,6 +37,8 @@ h1 {
 li {
     display: inline;
     text-align: center;
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
     color: white;
     text-align: center;
     padding: 14px 16px;
@@ -55,8 +69,9 @@ p {
 }
 
 body{
-    background-color: rgb(196, 233, 245); 
-    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    background-color: rgb(171, 217, 245); 
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto; 
     font-size: 15px;
     padding-top: 50px;
     padding-right: 50px;
@@ -69,9 +84,6 @@ body{
    border-radius: 10px;
         
 }
-h1 {
-    color: rgb(21, 136, 202);
-    background-color: lightskyblue;
 }
 h2 {
     color:rgb(31, 34, 199);
@@ -86,6 +98,8 @@ ul {
 footer {
     background-color: var(--cor5);
     color: white;
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
     text-align: center;
     font-size: 0.8em;
     padding: 5px;
