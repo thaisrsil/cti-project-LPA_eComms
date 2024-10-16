@@ -17,7 +17,39 @@
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </p>
 
-    <h2>Catalog</h2>
-    
+    <h2>Featured Romance Books</h2>
+
+    <div class="cart" id="cart">
+        <img src="images/cart-icon.png" alt="Cart" class="cart-icon"> <!-- Use um ícone de carrinho -->
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+        <ul>
+            <li>
+                <h3>Pride and Prejudice</h3>
+                <p>Author: Jane Austen</p>
+                <p>Price: R$ 29,90</p>
+                <button onclick="adicionarAoCarrinho('Pride and Prejudice')">Add to Cart</button>
+            </li>
+            <li>
+                <h3>The Notebook</h3>
+                <p>Author: Nicholas Sparks</p>
+                <p>Price: R$ 34,90</p>
+                <button onclick="adicionarAoCarrinho('The Notebook')">Add to Cart</button>
+            </li>
+        </ul>
+    <script>
+        let cartCount = 0; // Variável para manter a contagem de itens no carrinho
+            function adicionarAoCarrinho(livro) {
+            cartCount++; // Incrementa a contagem
+            document.getElementById('cartCount').innerText = cartCount; // Atualiza a contagem no ícone do carrinho
+            alert(livro + ' foi adicionado ao carrinho!');
+        }  
+    </script>
 </body>
+
+<footer>
+    <p>2024 Books 4 U. All rights reserved. | Site by ThaisRSilva</p> 
+ </footer>
+
 </html>

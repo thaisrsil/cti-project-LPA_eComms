@@ -4,18 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horror</title>
+    <link rel="stylesheet" href="style.css"> 
     <link rel="shortcut icon" href="images/books.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<header>
     <img src="images/books-icon-small.png" align="left" alt="">
-    <h1>Horror</h1>
-
+    <h1>Horror Books</h1>
     <p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/V5OqRhZoRpA?si=zIIw9KR8nMjc_1vf" title="YouTube video player" frameborder="0" allow="accelerometer; 
-    autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/V5OqRhZoRpA?si=zIIw9KR8nMjc_1vf" title="YouTube video player" frameborder="0" allow="accelerometer; 
+        autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </p>
-    
-    <h2>Catalog</h2>
+</header>
+<body>
+    <main>
+  
+        <h2>Featured Horror Books</h2>
+
+        <div class="cart" id="cart">
+            <img src="images/cart-icon.png" alt="Cart" class="cart-icon"> <!-- Use um ícone de carrinho -->
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+
+        <ul>
+            <li>
+                <h3>The Shining</h3>
+                <p>Autor: Stephen King</p>
+                <p>Preço: $ 39,90</p>
+                <button onclick="adicionarAoCarrinho('The Shining')">Add to Cart</button>
+            </li>
+            <li>
+                <h3>The Haunting of Hill House</h3>
+                <p>Autor: Shirley Jackson</p>
+                <p>Preço: $ 34,90</p>
+                <button onclick="adicionarAoCarrinho('The Haunting of Hill House')">Adicionar ao Carrinho</button>
+            </li>
+            <li>
+                <h3>Dracula</h3>
+                <p>Autor: Bram Stoker</p>
+                <p>Preço: $ 29,90</p>
+                <button onclick="adicionarAoCarrinho('Drácula')">Adicionar ao Carrinho</button>
+            </li>
+            <li>
+                <h3>The Exorcist</h3>
+                <p>Autor: William Peter Blatty</p>
+                <p>Preço: $ 44,90</p>
+                <button onclick="adicionarAoCarrinho('O Exorcista')">Adicionar ao Carrinho</button>
+            </li>
+        </ul>
+    </main>
+
+    <script>
+        let cartCount = 0; // Variável para manter a contagem de itens no carrinho
+
+        function adicionarAoCarrinho(livro) {
+            cartCount++; // Incrementa a contagem
+            document.getElementById('cartCount').innerText = cartCount; // Atualiza a contagem no ícone do carrinho
+            alert(livro + ' foi adicionado ao carrinho!');
+        }
+    </script>
+
 </body>
+
+<footer>
+    <p>2024 Books 4 U. All rights reserved. | Site by ThaisRSilva</p> 
+ </footer>
+
 </html>
