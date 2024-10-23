@@ -190,6 +190,34 @@ footer {
         font-size: 0.8em;
     }
 }
+
+.close-button {
+    width: 30px;
+    height: 30px;
+}
+
+.search-bar {
+    width: 300px; /* Aumenta a largura da barra de busca */
+    height: 40px; /* Aumenta a altura da barra de busca */
+    font-size: 16px; /* Aumenta o tamanho do texto dentro da barra */
+}
+
+ /* Section (Main Content) Styling */
+ section {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+section p {
+    font-size: 1.2em;
+    line-height: 1.6em;
+    margin-bottom: 20px;
+}
+
     
 
     

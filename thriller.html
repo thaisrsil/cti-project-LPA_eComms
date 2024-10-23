@@ -27,13 +27,20 @@
         <li>
             <h3>Gone Girl</h3>
             <p>Author: Gillian Flynn</p>
-            <p>Price: R$ 39,90</p>
+            <p>Price: $ 19,90</p>
             <button onclick="adicionarAoCarrinho('Gone Girl')">Add to Cart</button>
+        </li>
+
+        <li>
+            <h3>Murder on the Orient Express</h3>
+            <p>Author: Agatha Christie</p>
+            <p>Price: $ 22,90</p>
+            <button onclick="adicionarAoCarrinho('Murder on the Orient Express')">Add to Cart</button>
         </li>
         <li>
             <h3>The Girl with the Dragon Tattoo</h3>
             <p>Author: Stieg Larsson</p>
-            <p>Price: R$ 44,90</p>
+            <p>Price: $ 14,90</p>
             <button onclick="adicionarAoCarrinho('The Girl with the Dragon Tattoo')">Add to Cart</button>
         </li>
     </ul>
@@ -44,7 +51,7 @@
         function adicionarAoCarrinho(livro) {
             cartCount++; // Incrementa a contagem
             document.getElementById('cartCount').innerText = cartCount; // Atualiza a contagem no ícone do carrinho
-            alert(livro + ' foi adicionado ao carrinho!');
+            alert(livro + '  was added to your cart!');
         }
     </script>
 

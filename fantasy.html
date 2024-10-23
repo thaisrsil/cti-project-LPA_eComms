@@ -17,52 +17,31 @@
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </p>
 
-    <h2>Catalog</h2>
-
+   
     <h2>Featured Fantasy Books</h2>
     <ul>
         <li>
             <h3>The Hobbit</h3>
             <p>Author: J.R.R. Tolkien</p>
-            <p>Price: R$ 49,90</p>
+            <p>Price: R$ 29,90</p>
             <button onclick="adicionarAoCarrinho('The Hobbit')">Add to Cart</button>
         </li>
         <li>
             <h3>A Court of Thorns and Roses</h3>
             <p>Author: Sarah J. Maas</p>
-            <p>Price: R$ 54,90</p>
+            <p>Price: R$ 24,90</p>
             <button onclick="adicionarAoCarrinho('A Court of Thorns and Roses')">Add to Cart</button>
         </li>
     </ul>
 
-    <h2>Featured Thriller Books</h2>
-
-    <div class="cart" id="cart">
-        <img src="images/cart-icon.png" alt="Cart" class="cart-icon"> <!-- Use um ícone de carrinho -->
-        <span class="cart-count" id="cartCount">0</span>
-    </div>
     
-    <ul>
-        <li>
-            <h3>Gone Girl</h3>
-            <p>Author: Gillian Flynn</p>
-            <p>Price: R$ 39,90</p>
-            <button onclick="adicionarAoCarrinho('Gone Girl')">Add to Cart</button>
-        </li>
-        <li>
-            <h3>The Girl with the Dragon Tattoo</h3>
-            <p>Author: Stieg Larsson</p>
-            <p>Price: R$ 44,90</p>
-            <button onclick="adicionarAoCarrinho('The Girl with the Dragon Tattoo')">Add to Cart</button>
-        </li>
-    </ul>
     <script>
         let cartCount = 0; // Variável para manter a contagem de itens no carrinho
 
         function adicionarAoCarrinho(livro) {
             cartCount++; // Incrementa a contagem
             document.getElementById('cartCount').innerText = cartCount; // Atualiza a contagem no ícone do carrinho
-            alert(livro + ' foi adicionado ao carrinho!');
+            alert(livro + '  was added to your cart!');
         }
     </script>
 

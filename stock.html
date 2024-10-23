@@ -6,6 +6,18 @@
     <title>Stock Management</title>
     <link rel="shortcut icon" href="images/books.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .close-button {
+            width: 30px;
+            height: 30px;
+        }
+
+        .search-bar {
+            width: 300px; /* Aumenta a largura da barra de busca */
+            height: 40px; /* Aumenta a altura da barra de busca */
+            font-size: 16px; /* Aumenta o tamanho do texto dentro da barra */
+        }
+    </style>
 </head>
 <header>
     <img src="images/books-icon-small.png" align="left" alt="">
@@ -16,9 +28,9 @@
     <h3>
         <form action="/action_page.php">
             <label for="save">Search</label><br><br>
-            <input type="Item name" id="name" Item Name="text" placeholder="">
+            <input class="search-bar" type="text" id="name" name="text" placeholder="">
             <img src="search-icon.png" alt="">
-            <!--CORRIGIR TAMANHO DAS IMAGENS-->
+        </form>
     </h3>
 
     <h2></h2>
@@ -41,9 +53,7 @@
 
         <label for="item status">Item Status</label><br><br>
         <input type="item status" id="name" name="text" placeholder=""><br><br>  
-
-        
-       </form> 
+    </form> 
 
     <h3>
         <form action="/action_page.php">
@@ -54,9 +64,9 @@
     <h3>
         <form action="/action_page.php">
             <label for="close">Close</label><br><br>
-            <img src="images/close-icon.png" alt="">
-            <!--CORRIGIR TAMANHO DAS IMAGENS-->
+            <img class="close-button" src="images/close-icon.png" alt="">
             <input type="submit">  
+    </form>
     </h3>
     
     <footer>
@@ -64,30 +74,4 @@
     </footer>
 
 </body>
-
 </html>
-
-
-<!--
-como criar hiperlinks:
-<a href="https://www.w3schools.com/" target="_blank">Visit W3Schools!</a>
-
-3.	Stock management page – consisting of the following:
-	a page header that is global to all pages
-	a menu system for navigation within the application except for the login page
-	a page body for stock management page content with the following components:
-	stock id label and text field
-	stock item name label and text field
-	stock item description label and text field
-	stock item on-hand label and text field
-	stock item price label and text field
-	stock item status label and enabled/disabled radio button
-	a save button
-	a search button
-	a close button
-	a page footer that is global to all pages
-
-
-
-CORRIGIR TAMANHO DAS IMAGENS
--->
