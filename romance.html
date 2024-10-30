@@ -17,39 +17,50 @@
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </p>
 
-    <h2>Featured Romance Books</h2>
+    <h2>Romance Books</h2>
 
-    <div class="cart" id="cart">
-        <img src="images/cart-icon.png" alt="Cart" class="cart-icon"> <!-- Use um ícone de carrinho -->
+    <div class="cart" id="cart" onclick="openCart()">
+        <img src="images/cart-icon.png" alt="Cart" class="cart-icon">
         <span class="cart-count" id="cartCount">0</span>
     </div>
 
-        <ul>
-            <li>
-                <h3>Pride and Prejudice</h3>
-                <p>Author: Jane Austen</p>
-                <p>Price: R$ 9,90</p>
-                <button onclick="adicionarAoCarrinho('Pride and Prejudice')">Add to Cart</button>
-            </li>
-            <li>
-                <h3>The Notebook</h3>
-                <p>Author: Nicholas Sparks</p>
-                <p>Price: R$ 14,90</p>
-                <button onclick="adicionarAoCarrinho('The Notebook')">Add to Cart</button>
-            </li>
-        </ul>
+    <ul>
+        <li>
+            <h3>Pride and Prejudice</h3>
+            <p>Author: Jane Austen</p>
+            <p>Price: R$ 9,90</p>
+            <button onclick="adicionarAoCarrinho('Pride and Prejudice', 9.90)">Add to Cart</button>
+        </li>
+        <li>
+            <h3>The Notebook</h3>
+            <p>Author: Nicholas Sparks</p>
+            <p>Price: R$ 14,90</p>
+            <button onclick="adicionarAoCarrinho('The Notebook', 14.90)">Add to Cart</button>
+        </li>
+    </ul>
+
     <script>
-        let cartCount = 0; // Variável para manter a contagem de itens no carrinho
-            function adicionarAoCarrinho(livro) {
-            cartCount++; // Incrementa a contagem
-            document.getElementById('cartCount').innerText = cartCount; // Atualiza a contagem no ícone do carrinho
-            alert(livro + '  was added to your cart!');
-        }  
+        let cartCount = 0; // Variable to keep track of the number of items in the cart
+
+        function adicionarAoCarrinho(book, price) {
+            cartCount++;
+            document.getElementById('cartCount').innerText = cartCount;
+
+            // Create or get existing cart items from local storage
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.push({ title: book, price: price });
+            localStorage.setItem('cartItems', JSON.stringify(cartItems)); // Save back to local storage
+
+            alert(book + ' was added to your cart!');
+        }
+
+        function openCart() {
+            window.open('cart.html', '_blank');
+        }
     </script>
+
+    <footer>
+        <p>2024 Books 4 U. All rights reserved. | Site by ThaisRSilva</p> 
+    </footer>
 </body>
-
-<footer>
-    <p>2024 Books 4 U. All rights reserved. | Site by ThaisRSilva</p> 
- </footer>
-
 </html>

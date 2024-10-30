@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="shortcut icon" href="images/books.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+    <div id="cartItems"></div>
+    <button onclick="clearCart()">Clear Cart</button>
+    <button onclick="window.close()">Close</button>
+
+    <script>
+        function displayCartItems() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartDiv = document.getElementById('cartItems');
+
+            cartDiv.innerHTML = ''; // Clear previous items
+
+            if (cartItems.length === 0) {
+                cartDiv.innerHTML = '<p>Your cart is empty.</p>';
+                return;
+            }
+
+            const list = document.createElement('ul');
+            cartItems.forEach((item, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.title} - R$ ${item.price.toFixed(2)}`;
+
+                // Create Remove icon
+                const removeIcon = document.createElement('img');
+                removeIcon.src = 'images/bin.png'; // Path to your bin icon
+                removeIcon.alt = 'Remove';
+                removeIcon.style.width = '24px'; // Set width
+                removeIcon.style.height = '24px'; // Set height
+                removeIcon.style.cursor = 'pointer'; // Change cursor to pointer
+                removeIcon.onclick = () => removeFromCart(index); // Attach remove function
+                
+                // Add spaces between book name and icon
+                const space = document.createElement('span');
+                space.innerHTML = '&nbsp;&nbsp;'; // Two non-breaking spaces
+                
+                listItem.appendChild(space);
+                listItem.appendChild(removeIcon);
+                list.appendChild(listItem);
+            });
+            cartDiv.appendChild(list);
+        }
+
+        function removeFromCart(index) {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.splice(index, 1); // Remove the item at the specified index
+            localStorage.setItem('cartItems', JSON.stringify(cartItems)); // Save updated cart
+            displayCartItems(); // Refresh the cart display
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cartItems');
+            displayCartItems();
+        }
+
+        // Call the function to display items when the page loads
+        displayCartItems();
+    </script>
+</body>
+
+<footer>
+    <p>2024 Books 4 U. All rights reserved. | Site by ThaisRSilva</p> 
+</footer>
+</html>

@@ -18,8 +18,8 @@
     
     <h2>Featured Thriller Books</h2>
 
-    <div class="cart" id="cart">
-        <img src="images/cart-icon.png" alt="Cart" class="cart-icon"> <!-- Use um ícone de carrinho -->
+    <div class="cart" id="cart" onclick="openCart()">
+        <img src="images/cart-icon.png" alt="Cart" class="cart-icon"> 
         <span class="cart-count" id="cartCount">0</span>
     </div>
 
@@ -27,33 +27,50 @@
         <li>
             <h3>Gone Girl</h3>
             <p>Author: Gillian Flynn</p>
-            <p>Price: $ 19,90</p>
-            <button onclick="adicionarAoCarrinho('Gone Girl')">Add to Cart</button>
+            <p>Price: R$ 19,90</p>
+            <button onclick="adicionarAoCarrinho('Gone Girl', 19.90)">Add to Cart</button>
         </li>
-
         <li>
             <h3>Murder on the Orient Express</h3>
             <p>Author: Agatha Christie</p>
-            <p>Price: $ 22,90</p>
-            <button onclick="adicionarAoCarrinho('Murder on the Orient Express')">Add to Cart</button>
+            <p>Price: R$ 22,90</p>
+            <button onclick="adicionarAoCarrinho('Murder on the Orient Express', 22.90)">Add to Cart</button>
         </li>
         <li>
             <h3>The Girl with the Dragon Tattoo</h3>
             <p>Author: Stieg Larsson</p>
-            <p>Price: $ 14,90</p>
-            <button onclick="adicionarAoCarrinho('The Girl with the Dragon Tattoo')">Add to Cart</button>
+            <p>Price: R$ 14,90</p>
+            <button onclick="adicionarAoCarrinho('The Girl with the Dragon Tattoo', 14.90)">Add to Cart</button>
         </li>
     </ul>
 
     <script>
-        let cartCount = 0; // Variável para manter a contagem de itens no carrinho
+        // Initialize cart count from local storage or set to 0
+        let cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
+        document.getElementById('cartCount').innerText = cartCount;
 
-        function adicionarAoCarrinho(livro) {
-            cartCount++; // Incrementa a contagem
-            document.getElementById('cartCount').innerText = cartCount; // Atualiza a contagem no ícone do carrinho
-            alert(livro + '  was added to your cart!');
+        function adicionarAoCarrinho(book, price) {
+            cartCount++; // Increment the count
+            document.getElementById('cartCount').innerText = cartCount; // Update the count in the cart icon
+
+            // Create or get existing cart items from local storage
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.push({ title: book, price: price });
+            localStorage.setItem('cartItems', JSON.stringify(cartItems)); // Save back to local storage
+
+            // Update cart count in local storage
+            localStorage.setItem('cartCount', JSON.stringify(cartCount));
+
+            alert(book + ' was added to your cart!');
+        }
+
+        function openCart() {
+            window.open('cart.html', '_blank');
         }
     </script>
 
+    <footer>
+        <p>2024 Books 4 U. All rights reserved. | Site by ThaisRSilva</p> 
+    </footer>
 </body>
 </html>

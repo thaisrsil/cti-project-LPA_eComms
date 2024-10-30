@@ -12,43 +12,60 @@
     <h1>Fantasy</h1>
 
     <p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/n_cqszvdTqk?si=VxUTJPOcBFGotuNy" title="YouTube video player" frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/example" title="YouTube video player" 
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </p>
 
-   
     <h2>Featured Fantasy Books</h2>
+
+    <div class="cart" id="cart" onclick="openCart()">
+        <img src="images/cart-icon.png" alt="Cart" class="cart-icon">
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
     <ul>
         <li>
             <h3>The Hobbit</h3>
             <p>Author: J.R.R. Tolkien</p>
-            <p>Price: R$ 29,90</p>
-            <button onclick="adicionarAoCarrinho('The Hobbit')">Add to Cart</button>
+            <p>Price: $ 10.99</p>
+            <button onclick="adicionarAoCarrinho('The Hobbit', 10.99)">Add to Cart</button>
         </li>
         <li>
-            <h3>A Court of Thorns and Roses</h3>
-            <p>Author: Sarah J. Maas</p>
-            <p>Price: R$ 24,90</p>
-            <button onclick="adicionarAoCarrinho('A Court of Thorns and Roses')">Add to Cart</button>
+            <h3>A Song of Ice and Fire</h3>
+            <p>Author: George R.R. Martin</p>
+            <p>Price: $ 15.99</p>
+            <button onclick="adicionarAoCarrinho('A Song of Ice and Fire', 15.99)">Add to Cart</button>
         </li>
     </ul>
 
-    
     <script>
-        let cartCount = 0; // Variável para manter a contagem de itens no carrinho
+        // Initialize cart count from local storage or set to 0
+        let cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
+        document.getElementById('cartCount').innerText = cartCount;
 
-        function adicionarAoCarrinho(livro) {
-            cartCount++; // Incrementa a contagem
-            document.getElementById('cartCount').innerText = cartCount; // Atualiza a contagem no ícone do carrinho
-            alert(livro + '  was added to your cart!');
+        function adicionarAoCarrinho(book, price) {
+            cartCount++; // Increment the count
+            document.getElementById('cartCount').innerText = cartCount; // Update the count in the cart icon
+
+            // Create or get existing cart items from local storage
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.push({ title: book, price: price });
+            localStorage.setItem('cartItems', JSON.stringify(cartItems)); // Save back to local storage
+
+            // Update cart count in local storage
+            localStorage.setItem('cartCount', JSON.stringify(cartCount));
+
+            alert(book + ' was added to your cart!');
+        }
+
+        function openCart() {
+            window.open('cart.html', '_blank');
         }
     </script>
 
+    <footer>
+        <p>2024 Books 4 U. All rights reserved. | Site by ThaisRSilva</p> 
+    </footer>
 </body>
-
-<footer>
-    <p>2024 Books 4 U. All rights reserved. | Site by ThaisRSilva</p> 
- </footer>
-
 </html>

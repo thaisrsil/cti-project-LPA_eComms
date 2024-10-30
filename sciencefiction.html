@@ -17,11 +17,10 @@
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </p>
 
-    
     <h2>Featured Science Fiction Books</h2>
 
-    <div class="cart" id="cart">
-        <img src="images/cart-icon.png" alt="Cart" class="cart-icon"> <!-- Use um ícone de carrinho -->
+    <div class="cart" id="cart" onclick="openCart()">
+        <img src="images/cart-icon.png" alt="Cart" class="cart-icon">
         <span class="cart-count" id="cartCount">0</span>
     </div>
 
@@ -29,34 +28,44 @@
         <li>
             <h3>Dune</h3>
             <p>Author: Frank Herbert</p>
-            <p>Price: R$ 29,90</p>
-            <button onclick="adicionarAoCarrinho('Dune')">Add to Cart</button>
+            <p>Price: $ 14,90</p>
+            <button onclick="adicionarAoCarrinho('Dune', 14.90)">Add to Cart</button>
         </li>
         <li>
             <h3>Neuromancer</h3>
             <p>Author: William Gibson</p>
-            <p>Price: R$ 19,90</p>
-            <button onclick="adicionarAoCarrinho('Neuromancer')">Add to Cart</button>
+            <p>Price: $ 12,90</p>
+            <button onclick="adicionarAoCarrinho('Neuromancer', 12.90)">Add to Cart</button>
         </li>
     </ul>
-</main>
 
-<script>
-    let cartCount = 0; // Variável para manter a contagem de itens no carrinho
+    <script>
+        
+        let cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
+        document.getElementById('cartCount').innerText = cartCount;
 
-    function adicionarAoCarrinho(livro) {
-        cartCount++; // Incrementa a contagem
-        document.getElementById('cartCount').innerText = cartCount; // Atualiza a contagem no ícone do carrinho
-        alert(livro + '  was added to your cart!!');
-    }
-</script>
+        function adicionarAoCarrinho(book, price) {
+            cartCount++; 
+            document.getElementById('cartCount').innerText = cartCount; 
 
+         
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.push({ title: book, price: price });
+            localStorage.setItem('cartItems', JSON.stringify(cartItems)); 
+
+            
+            localStorage.setItem('cartCount', JSON.stringify(cartCount));
+
+            alert(book + ' was added to your cart!');
+        }
+
+        function openCart() {
+            window.open('cart.html', '_blank');
+        }
+    </script>
+
+    <footer>
+        <p>2024 Books 4 U. All rights reserved. | Site by ThaisRSilva</p> 
+    </footer>
 </body>
-
-
-
-<footer>
-    <p>2024 Books 4 U. All rights reserved. | Site by ThaisRSilva</p> 
- </footer>
-
 </html>

@@ -11,17 +11,16 @@
     <img src="images/books-icon-small.png" align="left" alt="">
     <h1>Horror Books</h1>
     <p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/V5OqRhZoRpA?si=zIIw9KR8nMjc_1vf" title="YouTube video player" frameborder="0" allow="accelerometer; 
-        autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/V5OqRhZoRpA?si=zIIw9KR8nMjc_1vf" title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </p>
 </header>
 <body>
     <main>
-  
         <h2>Featured Horror Books</h2>
 
-        <div class="cart" id="cart">
-            <img src="images/cart-icon.png" alt="Cart" class="cart-icon"> <!-- Use um ícone de carrinho -->
+        <div class="cart" id="cart" onclick="openCart()">
+            <img src="images/cart-icon.png" alt="Cart" class="cart-icon"> 
             <span class="cart-count" id="cartCount">0</span>
         </div>
 
@@ -29,44 +28,57 @@
             <li>
                 <h3>The Shining</h3>
                 <p>Author: Stephen King</p>
-                <p>Price: $ 17,90</p>
-                <button onclick="adicionarAoCarrinho('The Shining')">Add to Cart</button>
+                <p>Price: R$ 17,90</p>
+                <button onclick="adicionarAoCarrinho('The Shining', 17.90)">Add to Cart</button>
             </li>
             <li>
                 <h3>The Haunting of Hill House</h3>
                 <p>Author: Shirley Jackson</p>
-                <p>Price: $ 22,90</p>
-                <button onclick="adicionarAoCarrinho('The Haunting of Hill House')">Add to Cart</button>
+                <p>Price: R$ 22,90</p>
+                <button onclick="adicionarAoCarrinho('The Haunting of Hill House', 22.90)">Add to Cart</button>
             </li>
             <li>
                 <h3>Dracula</h3>
                 <p>Author: Bram Stoker</p>
-                <p>Price: $ 18,90</p>
-                <button onclick="adicionarAoCarrinho('Drácula')">Add to Cart</button>
+                <p>Price: R$ 18,90</p>
+                <button onclick="adicionarAoCarrinho('Dracula', 18.90)">Add to Cart</button>
             </li>
             <li>
                 <h3>The Exorcist</h3>
                 <p>Author: William Peter Blatty</p>
-                <p>Price: $ 14,90</p>
-                <button onclick="adicionarAoCarrinho('O Exorcista')">Add to Cart</button>
+                <p>Price: R$ 14,90</p>
+                <button onclick="adicionarAoCarrinho('The Exorcist', 14.90)">Add to Cart</button>
             </li>
         </ul>
     </main>
 
     <script>
-        let cartCount = 0; // Variável para manter a contagem de itens no carrinho
+        // Initialize cart count from local storage or set to 0
+        let cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
+        document.getElementById('cartCount').innerText = cartCount;
 
-        function adicionarAoCarrinho(livro) {
-            cartCount++; // Incrementa a contagem
-            document.getElementById('cartCount').innerText = cartCount; // Atualiza a contagem no ícone do carrinho
-            alert(livro + ' was added to your cart!');
+        function adicionarAoCarrinho(book, price) {
+            cartCount++; // Increment the count
+            document.getElementById('cartCount').innerText = cartCount; // Update the count in the cart icon
+
+            // Create or get existing cart items from local storage
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.push({ title: book, price: price });
+            localStorage.setItem('cartItems', JSON.stringify(cartItems)); // Save back to local storage
+
+            // Update cart count in local storage
+            localStorage.setItem('cartCount', JSON.stringify(cartCount));
+
+            alert(book + ' was added to your cart!');
+        }
+
+        function openCart() {
+            window.open('cart.html', '_blank');
         }
     </script>
 
+    <footer>
+        <p>2024 Books 4 U. All rights reserved. | Site by ThaisRSilva</p> 
+    </footer>
 </body>
-
-<footer>
-    <p>2024 Books 4 U. All rights reserved. | Site by ThaisRSilva</p> 
- </footer>
-
 </html>
