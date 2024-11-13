@@ -24,14 +24,22 @@
         <span class="cart-count" id="cartCount">0</span>
     </div>
 
-    <ul>
-        <li>
+
+    <label for="sort">Sort by:</label>
+    <select id="sort" onchange="sortBooks()">
+        <option value="default">Select</option>
+        <option value="price-low-high">Price: Low to High</option>
+        <option value="price-high-low">Price: High to Low</option>
+    </select>
+
+    <ul id="bookList">
+        <li data-price="9.90">
             <h3>Pride and Prejudice</h3>
             <p>Author: Jane Austen</p>
             <p>Price: R$ 9,90</p>
             <button onclick="adicionarAoCarrinho('Pride and Prejudice', 9.90)">Add to Cart</button>
         </li>
-        <li>
+        <li data-price="14.90">
             <h3>The Notebook</h3>
             <p>Author: Nicholas Sparks</p>
             <p>Price: R$ 14,90</p>
@@ -40,22 +48,45 @@
     </ul>
 
     <script>
-        let cartCount = 0; // Variable to keep track of the number of items in the cart
+        let cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
+        document.getElementById('cartCount').innerText = cartCount;
 
         function adicionarAoCarrinho(book, price) {
             cartCount++;
             document.getElementById('cartCount').innerText = cartCount;
 
-            // Create or get existing cart items from local storage
             const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
             cartItems.push({ title: book, price: price });
-            localStorage.setItem('cartItems', JSON.stringify(cartItems)); // Save back to local storage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
+            localStorage.setItem('cartCount', JSON.stringify(cartCount));
             alert(book + ' was added to your cart!');
         }
 
         function openCart() {
             window.open('cart.html', '_blank');
+        }
+
+        function sortBooks() {
+            const sortOption = document.getElementById('sort').value;
+            const bookList = document.getElementById('bookList');
+            const books = Array.from(bookList.getElementsByTagName('li'));
+
+            books.sort((a, b) => {
+                const priceA = parseFloat(a.getAttribute('data-price'));
+                const priceB = parseFloat(b.getAttribute('data-price'));
+
+                if (sortOption === 'price-low-high') {
+                    return priceA - priceB;
+                } else if (sortOption === 'price-high-low') {
+                    return priceB - priceA;
+                }
+                return 0;
+            });
+
+         
+            bookList.innerHTML = '';
+            books.forEach(book => bookList.appendChild(book));
         }
     </script>
 
@@ -64,3 +95,4 @@
     </footer>
 </body>
 </html>
+

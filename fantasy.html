@@ -24,14 +24,22 @@
         <span class="cart-count" id="cartCount">0</span>
     </div>
 
-    <ul>
-        <li>
+   
+    <label for="sort">Sort by:</label>
+    <select id="sort" onchange="sortBooks()">
+        <option value="default">Select</option>
+        <option value="price-low-high">Price: Low to High</option>
+        <option value="price-high-low">Price: High to Low</option>
+    </select>
+
+    <ul id="bookList">
+        <li data-price="10.99">
             <h3>The Hobbit</h3>
             <p>Author: J.R.R. Tolkien</p>
             <p>Price: $ 10.99</p>
             <button onclick="adicionarAoCarrinho('The Hobbit', 10.99)">Add to Cart</button>
         </li>
-        <li>
+        <li data-price="15.99">
             <h3>A Song of Ice and Fire</h3>
             <p>Author: George R.R. Martin</p>
             <p>Price: $ 15.99</p>
@@ -40,20 +48,17 @@
     </ul>
 
     <script>
-        // Initialize cart count from local storage or set to 0
         let cartCount = JSON.parse(localStorage.getItem('cartCount')) || 0;
         document.getElementById('cartCount').innerText = cartCount;
 
         function adicionarAoCarrinho(book, price) {
-            cartCount++; // Increment the count
-            document.getElementById('cartCount').innerText = cartCount; // Update the count in the cart icon
+            cartCount++; 
+            document.getElementById('cartCount').innerText = cartCount; 
 
-            // Create or get existing cart items from local storage
             const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
             cartItems.push({ title: book, price: price });
-            localStorage.setItem('cartItems', JSON.stringify(cartItems)); // Save back to local storage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems)); 
 
-            // Update cart count in local storage
             localStorage.setItem('cartCount', JSON.stringify(cartCount));
 
             alert(book + ' was added to your cart!');
@@ -61,6 +66,28 @@
 
         function openCart() {
             window.open('cart.html', '_blank');
+        }
+
+        function sortBooks() {
+            const sortOption = document.getElementById('sort').value;
+            const bookList = document.getElementById('bookList');
+            const books = Array.from(bookList.getElementsByTagName('li'));
+
+            books.sort((a, b) => {
+                const priceA = parseFloat(a.getAttribute('data-price'));
+                const priceB = parseFloat(b.getAttribute('data-price'));
+
+                if (sortOption === 'price-low-high') {
+                    return priceA - priceB;
+                } else if (sortOption === 'price-high-low') {
+                    return priceB - priceA;
+                }
+                return 0;
+            });
+
+           
+            bookList.innerHTML = '';
+            books.forEach(book => bookList.appendChild(book));
         }
     </script>
 
